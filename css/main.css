@@ -1,0 +1,166 @@
+:root {
+    --black: #050505;
+    --white: #eee;
+}
+
+html {
+    background: var(--black);
+    color: var(--white);
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    margin: 0;
+    padding: 20px;
+    -webkit-font-variant-ligatures: discretionary-ligatures;
+    -moz-font-variant-ligatures: discretionary-ligatures;
+    font-variant-ligatures: discretionary-ligatures;
+    -webkit-font-feature-settings: "liga", "dlig";
+    -moz-font-feature-settings: "liga", "dlig";
+    font-feature-settings: "liga", "dlig";
+}
+
+#logo {
+    fill: var(--white);
+    width: 150px;
+    position: fixed;
+    margin: 20px 0 0 0;
+}
+
+.manifesto {
+    font-weight: 300;
+    font-size: calc( 32px + (60 - 32) * (100vw - 488px) / ( 840 - 488) );
+    line-height: 1.5em;
+    margin: calc(50vh - 1.5em) auto;
+    color: var(--white);
+    cursor: default;
+    user-select: none;
+}
+
+.hidden {
+    transition: color 300ms ease-out;
+    color: transparent;
+}
+
+.hidden .hotword {
+    background-image: none;
+}
+
+.hidden .hotword:hover {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, transparent 100%);
+    color: white;
+}
+
+.hotword {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.15) 100%, transparent 100%);
+    background-repeat: repeat-x;
+    background-size: 10px 1.5em;
+    cursor: pointer;
+}
+
+.capture {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    margin: 0;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 300ms linear;
+}
+
+.shown {
+    opacity: 1;
+}
+
+.--map {
+    background-image: url('../img/captures/emojis.jpg')
+}
+
+.--art {
+    background-image: url('../img/captures/prado.jpg')
+}
+
+.--environment {
+    background-image: url('../img/captures/airquality.png')
+}
+
+.--30experience {
+    object-fit: contain;
+}
+
+.--inmersive, .--nonprofit {
+    object-fit: cover;
+}
+
+.--outsideofscreens {
+    background-image: url('../img/captures/newspaperart4.jpg');
+}
+
+.visited {
+    background: url('../img/visitedbg.png');
+    background-size: 10px 10px;
+}
+
+#eye {
+    position:absolute;
+    top:0;
+    left: 0;
+    width: 5vw;
+    height: 5vw;
+    transform: translate(-50%, -50%);
+    background-size: contain;
+    pointer-events: none;
+    box-shadow: 0 0 0 0  rgba(255, 255, 255, 0.15);
+    -webkit-animation: pulse 1.5s infinite;
+    border-radius: 50%;
+}
+
+.invisible {
+    display: none;
+}
+
+@keyframes pulse {
+    0% { 
+        transform: translate(-50%, -50%) scale(.9);
+        box-shadow: 0 0 0 0px  rgba(255, 255, 255, 0.3); 
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1) ;
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(.9);
+        box-shadow: 0 0 0 30px  rgba(255, 255, 255, 0); 
+    }
+}
+
+@media (min-width: 840px) {
+    .manifesto {
+        font-size: 60px;
+        max-width: 800px;
+    }
+    .logo {
+        margin: 30px 0 0 40px;
+    }
+    #eye {
+        width: 54px;
+        height: 54px;
+    }
+}
+
+@media (max-width: 488px) {
+    .logo {
+        width: 150px;
+    }
+    .manifesto {
+        font-size: 32px;
+    }
+    #eye {
+        width: 28px;
+        height: 28px;
+    }
+}
