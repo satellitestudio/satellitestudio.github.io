@@ -64,11 +64,9 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
+    object-fit: cover;
     z-index: -1;
     margin: 0;
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
     opacity: 0;
     transition: opacity 300ms linear;
 }
@@ -77,28 +75,12 @@ body {
     opacity: 1;
 }
 
-.--emojimaps {
-    background-image: url('../img/captures/emojimaps.jpg')
-}
-
-.--prado {
-    background-image: url('../img/captures/prado.jpg')
-}
-
-.--airqualitycalendar {
-    background-image: url('../img/captures/airquality.png')
-}
-
 .--emojiglobe {
     object-fit: contain;
 }
 
 .--renfe, .--ianimal, .--clubmed {
     object-fit: cover;
-}
-
-.--outsideofscreens {
-    background-image: url('../img/captures/newspaperart4.jpg');
 }
 
 .visited {
