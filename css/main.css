@@ -77,23 +77,23 @@ body {
     opacity: 1;
 }
 
-.--map {
-    background-image: url('../img/captures/emojis.jpg')
+.--emojimaps {
+    background-image: url('../img/captures/emojimaps.jpg')
 }
 
-.--art {
+.--prado {
     background-image: url('../img/captures/prado.jpg')
 }
 
-.--environment {
+.--airqualitycalendar {
     background-image: url('../img/captures/airquality.png')
 }
 
-.--30experience {
+.--emojiglobe {
     object-fit: contain;
 }
 
-.--inmersive, .--nonprofit {
+.--renfe, .--ianimal, .--clubmed {
     object-fit: cover;
 }
 
