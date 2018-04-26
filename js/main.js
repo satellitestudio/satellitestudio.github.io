@@ -8,7 +8,7 @@ positionEyeHint();
 window.onresize = positionEyeHint;
 window.onscroll = function() {
     document.getElementById('logo').style.setProperty("opacity", 1 - window.pageYOffset / 100);
-    if(currentImage) hideCapture(null);
+    hideCapture(null);
 }
 var hotwords = document.getElementsByClassName("hotword");
 
@@ -41,12 +41,16 @@ function hideCapture(e) {
         functionDelay = null;
     } else {
         setTimeout(function(){
-            currentWord.classList.add("visited");
-            currentWord = null;
+            if(currentWord) {
+                currentWord.classList.add("visited");
+                currentWord = null;
+            }
         }, 300);
-        currentImage.classList.remove("shown");
         document.getElementsByClassName("manifesto")[0].classList.remove("hidden");
-        currentImage = null;
+        if(currentImage) {
+            currentImage.classList.remove("shown");
+            currentImage = null;
+        }
     }
 }
 

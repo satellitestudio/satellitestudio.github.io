@@ -8,6 +8,11 @@ html {
     color: var(--white);
 }
 
+a {
+    text-decoration: none;
+    color: var(--white);
+}
+
 body {
     font-family: 'Cormorant Garamond', serif;
     margin: 0;
@@ -29,8 +34,8 @@ body {
 
 .manifesto {
     font-weight: 300;
-    font-size: calc( 32px + (60 - 32) * (100vw - 488px) / ( 840 - 488) );
-    line-height: 1.5em;
+    font-size: calc( 32px + (54 - 32) * (100vw - 320px) / ( 840 - 320) );
+    line-height: 1.4em;
     margin: calc(50vh - 1.5em) auto;
     color: var(--white);
     cursor: default;
@@ -122,7 +127,7 @@ body {
 
 @media (min-width: 840px) {
     .manifesto {
-        font-size: 60px;
+        font-size: 54px;
         max-width: 800px;
     }
     .logo {
@@ -134,7 +139,7 @@ body {
     }
 }
 
-@media (max-width: 488px) {
+@media (max-width: 320px) {
     .logo {
         width: 150px;
     }
