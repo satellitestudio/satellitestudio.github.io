@@ -6,7 +6,7 @@ function positionEyeHint(e) {
 }
 positionEyeHint();
 window.onresize = positionEyeHint;
-window.onscroll = function() {
+window.onscroll = function () {
     document.getElementById('logo').style.setProperty("opacity", 1 - window.pageYOffset / 100);
     hideCapture(null);
 }
@@ -21,10 +21,12 @@ var functionDelay = null;
 var currentImage = null;
 var currentWord = null;
 function showCapture(e) {
-    functionDelay = setTimeout(function(){
+    functionDelay = setTimeout(function () {
         currentWord = e.target;
         currentImage = document.getElementsByClassName("--" + currentWord.dataset.capture)[0];
         currentImage.classList.add("shown");
+        if (currentImage.nodeName === 'VIDEO') currentImage.play();
+
         document.getElementsByClassName("manifesto")[0].classList.add("hidden");
         if (eyeVisibility) {
             document.getElementById('eye').classList.add("invisible");
@@ -40,15 +42,16 @@ function hideCapture(e) {
         clearTimeout(functionDelay);
         functionDelay = null;
     } else {
-        setTimeout(function(){
-            if(currentWord) {
+        setTimeout(function () {
+            if (currentWord) {
                 currentWord.classList.add("visited");
                 currentWord = null;
             }
         }, 300);
         document.getElementsByClassName("manifesto")[0].classList.remove("hidden");
-        if(currentImage) {
+        if (currentImage) {
             currentImage.classList.remove("shown");
+            if (currentImage.nodeName === 'VIDEO') currentImage.pause();
             currentImage = null;
         }
     }
