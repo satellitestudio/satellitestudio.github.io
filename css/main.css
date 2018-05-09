@@ -51,13 +51,19 @@ body {
     background-image: none;
 }
 
+@media only screen and (max-width:640px) {
+    .hidden .hotword {
+        pointer-events: none;
+    }
+}
+
 .hidden .hotword:hover {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, transparent 100%);
     color: white;
 }
 
 .hotword {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.15) 100%, transparent 100%);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25) 100%, transparent 100%);
     background-repeat: repeat-x;
     background-size: 10px 1.5em;
     cursor: pointer;
@@ -97,8 +103,8 @@ body {
     position:absolute;
     top:0;
     left: 0;
-    width: 5vw;
-    height: 5vw;
+    width: 5vmax;
+    height: 5vmax;
     transform: translate(-50%, -50%);
     background-size: contain;
     pointer-events: none;
