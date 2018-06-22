@@ -1,6 +1,8 @@
 :root {
     --black: #050505;
     --white: #eee;
+    --grey:  rgba(255, 255, 255, 0.25);
+    --lightgrey:  rgba(255, 255, 255, 0.6);
 }
 
 html {
@@ -63,7 +65,7 @@ body {
 }
 
 .hotword {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.25) 100%, transparent 100%);
+    background-image: linear-gradient(to right, var(--grey) 100%, transparent 100%);
     background-repeat: repeat-x;
     background-size: 10px 1.5em;
     cursor: pointer;
@@ -156,4 +158,23 @@ body {
         width: 28px;
         height: 28px;
     }
+}
+
+.signature {
+    margin-top: 90px;
+    font-size: 22px;
+    line-height: 1.3em;
+    color: var(--lightgrey);
+}
+
+.signature img {
+    width: 60px;
+    float: left;
+    margin-right: 14px;
+    border-radius: 99px;
+}
+
+.signature a {
+    border-bottom: 0.5px solid var(--lightgrey);
+    color: inherit;
 }
