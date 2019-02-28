@@ -5,6 +5,24 @@
     --lightgrey:  rgba(255, 255, 255, 0.6);
 }
 
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('../fonts/subset-CormorantGaramond-Light.woff2') format('woff2'),
+        url('../fonts/subset-CormorantGaramond-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('../fonts/subset-CormorantGaramond-LightItalic.woff2') format('woff2'),
+        url('../fonts/subset-CormorantGaramond-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+
+
 html {
     background: var(--black);
     color: var(--white);
