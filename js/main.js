@@ -37,7 +37,6 @@ function showCapture(e) {
             document.getElementById('eye').classList.add("invisible");
             eyeVisibility = false;
         }
-        ga('send', currentWord.dataset.capture);
         functionDelay = null;
         window.addEventListener("click", hideCapture);
     }, 200);
