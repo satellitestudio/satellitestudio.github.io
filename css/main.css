@@ -7,17 +7,17 @@
 
 @font-face {
     font-family: 'Cormorant Garamond';
-    src: url('../fonts/subset-CormorantGaramond-Light.woff2') format('woff2'),
-        url('../fonts/subset-CormorantGaramond-Light.woff') format('woff');
-    font-weight: 300;
+    src: url('../fonts/cormorantgaramond-medium.woff2') format('woff2'),
+        url('../fonts/cormorantgaramond-medium.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Cormorant Garamond';
-    src: url('../fonts/subset-CormorantGaramond-LightItalic.woff2') format('woff2'),
-        url('../fonts/subset-CormorantGaramond-LightItalic.woff') format('woff');
-    font-weight: 300;
+    src: url('../fonts/cormorantgaramond-mediumitalic.woff2') format('woff2'),
+        url('../fonts/cormorantgaramond-mediumitalic.woff') format('woff');
+    font-weight: 400;
     font-style: italic;
 }
 
@@ -53,7 +53,7 @@ body {
 }
 
 .manifesto {
-    font-weight: 300;
+    font-weight: 400;
     font-size: calc( 32px + (54 - 32) * (100vw - 320px) / ( 840 - 320) );
     line-height: 1.4em;
     margin: calc(50vh - 1.5em) auto;
