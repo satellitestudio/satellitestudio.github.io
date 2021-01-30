@@ -26,17 +26,13 @@ html {
     color: var(--white);
 }
 
-a, button {
-    color: var(--white);
-    font-size: 2rem;
-}
-
 button:focus {
     outline: 0
 }
 
 a {
     text-decoration: none;
+    color: var(--white)
 }
 
 button {
@@ -73,6 +69,11 @@ nav {
     opacity: 0;
     transition: opacity 300ms linear;
     /* margin: 18px 20px 0 0; */
+}
+
+nav a, nav button {
+    color: var(--white);
+    font-size: 2rem;
 }
 
 #menuBtn {
@@ -119,7 +120,7 @@ nav {
     color: transparent;
 }
 
-.manifesto.hidden .hotword {
+.manifesto.hidden [data-capture] {
     background-image: none;
 }
 
@@ -128,7 +129,7 @@ nav {
 }
 
 @media only screen and (max-width:640px) {
-    .hidden .hotword {
+    .hidden [data-capture] {
         pointer-events: none;
     }
 
@@ -152,12 +153,12 @@ nav {
     }
 }
 
-.hidden .hotword:hover {
+.hidden [data-capture]:hover {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 100%, transparent 100%);
     color: white;
 }
 
-.hotword {
+[data-capture] {
     background-image: linear-gradient(to right, var(--grey) 100%, transparent 100%);
     background-repeat: repeat-x;
     background-size: 10px 1.5em;

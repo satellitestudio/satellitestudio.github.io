@@ -1,9 +1,73 @@
-var TIMECODES = {
-    emojiglobe: 100,
-    gfishcartogram: 200,
-    fishing: 400
-}
-
+var CHAPTERS = [
+    {
+        hotword: 'emojiglobe',
+        timecodes: [100, 104],
+    },
+    {
+        hotword: 'charts',
+        timecodes: [104, 120],
+    },
+    {
+        hotword: 'maps',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'analysistools',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'interactivearticles',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'fishing',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'coffee',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'climate',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'literature',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'design',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'fearless',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'tiny',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'giganticdb',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: '30seconds',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'analysistools',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'meaning',
+        timecodes: [100, 110],
+    },
+    {
+        hotword: 'emotion',
+        timecodes: [100, 110],
+    }
+]
 var eyeVisibility = true;
 var manifesto = document.getElementsByClassName('manifesto')[0]
 var video = document.getElementsByTagName('video')[0]
@@ -26,7 +90,7 @@ window.onscroll = function () {
     logo.style.setProperty('opacity', 1 - window.pageYOffset / 100);
     hideCapture(null);
 }
-var hotwords = document.getElementsByClassName('hotword');
+var hotwords = document.querySelectorAll('[data-capture]');
 
 for (var i = 0; i < hotwords.length; i++) {
     if (typeof window.orientation !== 'undefined') {
@@ -42,6 +106,12 @@ var functionDelay = null;
 var currentWord = null;
 var currentWordId = null;
 
+function getChapterByHotword(hotword) {
+    return CHAPTERS.find(function(c) {
+        return c.hotword === hotword
+    })
+}
+
 function doShowCapture(disableManifesto = false) {
     video.classList.add('shown');
     manifesto.classList.add('hidden');
@@ -55,7 +125,7 @@ function showCapture(e) {
     functionDelay = setTimeout(function () {
         currentWord = e.target;
         currentWordId = currentWord.dataset.capture
-        var timecode = TIMECODES[currentWordId]
+        var timecode = getChapterByHotword(currentWordId).timecodes[0]
         video.currentTime = timecode
         doShowCapture()
         if (eyeVisibility) {
