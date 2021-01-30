@@ -10,6 +10,8 @@ var video = document.getElementsByTagName('video')[0]
 var eye = document.getElementById('eye')
 var nav = document.getElementsByTagName('nav')[0]
 var logo = document.getElementById('logo')
+var menuBtn = document.getElementById('menuBtn')
+var menuContainer = document.getElementById('menuContainer')
 var manifestoBtn = document.getElementById('manifestoBtn')
 var reelBtn = document.getElementById('reelBtn')
 
@@ -106,9 +108,16 @@ reelBtn.addEventListener('click', function() {
     video.muted = false
 })
 
-setTimeout(doHideCapture, 2000)
+menuBtn.addEventListener('click', function() {
+    menuContainer.classList.toggle('hidden')
+    logo.classList.toggle('noFade')
+})
+
+setTimeout(function() {
+    doHideCapture()
+    positionEyeHint();
+}, 400)
 setTimeout(function() {
     eye.classList.remove('invisible');
     nav.classList.add('shown');
-}, 3000)
-positionEyeHint();
+}, 600)
