@@ -68,8 +68,10 @@ body, button {
 }
 
 nav {
+    opacity: 0;
     position: fixed;
     right: 0;
+    transition: opacity 300ms linear;
 }
 
 nav ul {
@@ -86,7 +88,6 @@ nav a, nav button {
     cursor: pointer;
 }
 
-
 .manifesto {
     font-weight: 400;
     font-size: calc( 32px + (54 - 32) * (100vw - 320px) / ( 840 - 320) );
@@ -97,13 +98,17 @@ nav a, nav button {
     user-select: none;
 }
 
-.hidden {
+.manifesto.hidden {
     transition: color 300ms ease-out;
     color: transparent;
 }
 
-.hidden .hotword {
+.manifesto.hidden .hotword {
     background-image: none;
+}
+
+.manifesto.disabled {
+    visibility: hidden;
 }
 
 @media only screen and (max-width:640px) {

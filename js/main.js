@@ -8,8 +8,10 @@ var eyeVisibility = true;
 var manifesto = document.getElementsByClassName('manifesto')[0]
 var video = document.getElementsByTagName('video')[0]
 var eye = document.getElementById('eye')
-var menu = document.getElementsByTagName('menu')[0]
+var nav = document.getElementsByTagName('nav')[0]
 var logo = document.getElementById('logo')
+var manifestoBtn = document.getElementById('manifestoBtn')
+var reelBtn = document.getElementById('reelBtn')
 
 function positionEyeHint(e) {
     var firstHotwordPosition = document.getElementById('eyeSpan').getBoundingClientRect();
@@ -38,18 +40,27 @@ var functionDelay = null;
 var currentWord = null;
 var currentWordId = null;
 
+function doShowCapture(disableManifesto = false) {
+    video.classList.add('shown');
+    manifesto.classList.add('hidden');
+    eye.classList.add('invisible');
+    if (disableManifesto) {
+        manifesto.classList.add('disabled');
+    }
+}
+
 function showCapture(e) {
     functionDelay = setTimeout(function () {
         currentWord = e.target;
         currentWordId = currentWord.dataset.capture
         var timecode = TIMECODES[currentWordId]
         video.currentTime = timecode
-        video.classList.add('shown');
-        manifesto.classList.add('hidden');
+        doShowCapture()
         if (eyeVisibility) {
             eye.classList.add('invisible');
             eyeVisibility = false;
         }
+
         functionDelay = null;
         window.addEventListener('click', hideCapture);
     }, 200);
@@ -57,11 +68,15 @@ function showCapture(e) {
 
 function doHideCapture() {
     manifesto.classList.remove('hidden');
-    video.classList.remove('shown')
+    video.classList.remove('shown');
+    if (eyeVisibility === true) {
+        eye.classList.remove('invisible');
+    }
+    manifesto.classList.remove('disabled');
 }
 
 function hideCapture() {
-    if (functionDelay != null) {
+    if (functionDelay !== null) {
         clearTimeout(functionDelay);
         functionDelay = null;
     } else {
@@ -78,8 +93,22 @@ function hideCapture() {
     }
 }
 
-setTimeout(doHideCapture, 4000)
+manifestoBtn.addEventListener('click', function() {
+    doHideCapture(true)
+    video.controls = false
+    video.muted = true
+})
+
+reelBtn.addEventListener('click', function() {
+    doShowCapture(true)
+    video.currentTime = 0
+    video.controls = true
+    video.muted = false
+})
+
+setTimeout(doHideCapture, 2000)
 setTimeout(function() {
     eye.classList.remove('invisible');
-}, 6000)
+    nav.classList.add('shown');
+}, 3000)
 positionEyeHint();
