@@ -1,11 +1,11 @@
 var CHAPTERS = [
     {
         hotword: 'emojiglobe',
-        timecodes: [100, 104],
+        timecodes: [100, 102],
     },
     {
         hotword: 'charts',
-        timecodes: [104, 120],
+        timecodes: [104, 106],
     },
     {
         hotword: 'maps',
@@ -156,6 +156,7 @@ function hideCapture() {
             if (currentWord) {
                 currentWord.classList.add('visited');
                 currentWord = null;
+                currentWordId = null;
             }
         }, 300);
         if (currentWord) {
@@ -181,6 +182,14 @@ reelBtn.addEventListener('click', function() {
 menuBtn.addEventListener('click', function() {
     menuContainer.classList.toggle('hidden')
     logo.classList.toggle('noFade')
+})
+
+video.addEventListener('timeupdate', function() {
+    if (video.controls || !currentWordId) return
+    var timecodes = getChapterByHotword(currentWordId).timecodes
+    if (this.currentTime >= timecodes[1]) {
+        video.currentTime = timecodes[0]
+    }
 })
 
 setTimeout(function() {
