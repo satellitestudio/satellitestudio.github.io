@@ -8,6 +8,8 @@ var eyeVisibility = true;
 var manifesto = document.getElementsByClassName('manifesto')[0]
 var video = document.getElementsByTagName('video')[0]
 var eye = document.getElementById('eye')
+var menu = document.getElementsByTagName('menu')[0]
+var logo = document.getElementById('logo')
 
 function positionEyeHint(e) {
     var firstHotwordPosition = document.getElementById('eyeSpan').getBoundingClientRect();
@@ -17,7 +19,7 @@ function positionEyeHint(e) {
 
 window.onresize = positionEyeHint;
 window.onscroll = function () {
-    document.getElementById('logo').style.setProperty('opacity', 1 - window.pageYOffset / 100);
+    logo.style.setProperty('opacity', 1 - window.pageYOffset / 100);
     hideCapture(null);
 }
 var hotwords = document.getElementsByClassName('hotword');

@@ -21,22 +21,37 @@
     font-style: italic;
 }
 
-
-
 html {
     background: var(--black);
     color: var(--white);
 }
 
+a, button {
+    color: var(--white);
+    font-size: 2rem;
+}
+
+button:focus {
+    outline: 0
+}
+
 a {
     text-decoration: none;
-    color: var(--white);
+}
+
+button {
+    background: none;
+    border: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Cormorant Garamond', serif;
     margin: 0;
     padding: 20px;
+}
+
+body, button {
+    font-family: 'Cormorant Garamond', serif;
     -webkit-font-variant-ligatures: discretionary-ligatures;
     -moz-font-variant-ligatures: discretionary-ligatures;
     font-variant-ligatures: discretionary-ligatures;
@@ -51,6 +66,26 @@ body {
     position: fixed;
     margin: 20px 0 0 0;
 }
+
+nav {
+    position: fixed;
+    right: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 18px 20px 0 0;
+}
+
+nav li {
+    margin: 0 1rem;
+}
+
+nav a, nav button {
+    cursor: pointer;
+}
+
 
 .manifesto {
     font-weight: 400;
@@ -114,7 +149,7 @@ video {
     object-fit: cover;
 }
 
-.visited {
+.visited, nav button:hover, nav a:hover {
     background: url('../img/visitedbg.png');
     background-size: 10px 10px;
 }
