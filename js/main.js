@@ -1,64 +1,83 @@
+var TIMECODES = {
+    emojiglobe: 100,
+    gfishcartogram: 200,
+    fishing: 400
+}
+
 var eyeVisibility = true;
+var manifesto = document.getElementsByClassName('manifesto')[0]
+var video = document.getElementsByTagName('video')[0]
+var eye = document.getElementById('eye')
+
 function positionEyeHint(e) {
     var firstHotwordPosition = document.getElementById('eyeSpan').getBoundingClientRect();
-    document.getElementById('eye').style.setProperty("top", firstHotwordPosition.top + window.pageYOffset + "px");
-    document.getElementById('eye').style.setProperty("left", firstHotwordPosition.left + window.pageXOffset + "px");
+    eye.style.setProperty('top', firstHotwordPosition.top + window.pageYOffset + 'px');
+    eye.style.setProperty('left', firstHotwordPosition.left + window.pageXOffset + 'px');
 }
-positionEyeHint();
+
 window.onresize = positionEyeHint;
 window.onscroll = function () {
-    document.getElementById('logo').style.setProperty("opacity", 1 - window.pageYOffset / 100);
+    document.getElementById('logo').style.setProperty('opacity', 1 - window.pageYOffset / 100);
     hideCapture(null);
 }
-var hotwords = document.getElementsByClassName("hotword");
+var hotwords = document.getElementsByClassName('hotword');
 
 for (var i = 0; i < hotwords.length; i++) {
     if (typeof window.orientation !== 'undefined') {
-        hotwords[i].addEventListener("click", showCapture);
-        // window.addEventListener("click", hideCapture);
+        hotwords[i].addEventListener('click', showCapture);
+        // window.addEventListener('click', hideCapture);
     } else {
-        hotwords[i].addEventListener("mouseenter", showCapture);
-        hotwords[i].addEventListener("mouseout", hideCapture);
+        hotwords[i].addEventListener('mouseenter', showCapture);
+        hotwords[i].addEventListener('mouseout', hideCapture);
     }
 }
 
 var functionDelay = null;
-var currentImage = null;
 var currentWord = null;
+var currentWordId = null;
 
 function showCapture(e) {
     functionDelay = setTimeout(function () {
         currentWord = e.target;
-        currentImage = document.getElementsByClassName("--" + currentWord.dataset.capture)[0];
-        currentImage.classList.add("shown");
-        if (currentImage.nodeName === 'VIDEO') currentImage.play();
-        document.getElementsByClassName("manifesto")[0].classList.add("hidden");
+        currentWordId = currentWord.dataset.capture
+        var timecode = TIMECODES[currentWordId]
+        video.currentTime = timecode
+        video.classList.add('shown');
+        manifesto.classList.add('hidden');
         if (eyeVisibility) {
-            document.getElementById('eye').classList.add("invisible");
+            eye.classList.add('invisible');
             eyeVisibility = false;
         }
         functionDelay = null;
-        window.addEventListener("click", hideCapture);
+        window.addEventListener('click', hideCapture);
     }, 200);
 }
 
-function hideCapture(e) {
+function doHideCapture() {
+    manifesto.classList.remove('hidden');
+    video.classList.remove('shown')
+}
+
+function hideCapture() {
     if (functionDelay != null) {
         clearTimeout(functionDelay);
         functionDelay = null;
     } else {
         setTimeout(function () {
             if (currentWord) {
-                currentWord.classList.add("visited");
+                currentWord.classList.add('visited');
                 currentWord = null;
             }
         }, 300);
-        document.getElementsByClassName("manifesto")[0].classList.remove("hidden");
-        if (currentImage) {
-            currentImage.classList.remove("shown");
-            if (currentImage.nodeName === 'VIDEO') currentImage.pause();
-            currentImage = null;
-            window.removeEventListener("click", hideCapture);
+        if (currentWord) {
+            doHideCapture()
+            window.removeEventListener('click', hideCapture);
         }
     }
 }
+
+setTimeout(doHideCapture, 4000)
+setTimeout(function() {
+    eye.classList.remove('invisible');
+}, 6000)
+positionEyeHint();
