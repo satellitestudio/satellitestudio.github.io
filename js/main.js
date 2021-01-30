@@ -9,7 +9,7 @@ var CHAPTERS = [
     },
     {
         hotword: 'maps',
-        timecodes: [100, 110],
+        timecodes: [130, 133],
     },
     {
         hotword: 'analysistools',
