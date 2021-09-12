@@ -1,71 +1,71 @@
 var CHAPTERS = [
     {
         hotword: 'emojiglobe',
-        timecodes: [100, 102],
+        timecodes: [0, 2],
     },
     {
         hotword: 'charts',
-        timecodes: [104, 106],
+        timecodes: [24, 28],
     },
     {
         hotword: 'maps',
-        timecodes: [130, 133],
+        timecodes: [37, 39.5],
     },
     {
         hotword: 'analysistools',
-        timecodes: [100, 110],
+        timecodes: [57, 59],
     },
     {
         hotword: 'interactivearticles',
-        timecodes: [100, 110],
+        timecodes: [71, 77],
     },
     {
         hotword: 'fishing',
-        timecodes: [100, 110],
+        timecodes: [84, 87],
     },
     {
         hotword: 'coffee',
-        timecodes: [100, 110],
+        timecodes: [46, 49],
     },
     {
         hotword: 'climate',
-        timecodes: [100, 110],
+        timecodes: [128, 133],
     },
     {
         hotword: 'literature',
-        timecodes: [100, 110],
+        timecodes: [140, 142],
     },
     {
         hotword: 'design',
-        timecodes: [100, 110],
+        timecodes: [75, 78],
     },
     {
         hotword: 'fearless',
-        timecodes: [100, 110],
+        timecodes: [166, 170],
     },
     {
         hotword: 'tiny',
-        timecodes: [100, 110],
+        timecodes: [178, 180],
     },
     {
         hotword: 'giganticdb',
-        timecodes: [100, 110],
+        timecodes: [148, 150],
     },
     {
         hotword: '30seconds',
-        timecodes: [100, 110],
+        timecodes: [193, 197],
     },
     {
-        hotword: 'analysistools',
-        timecodes: [100, 110],
+        hotword: 'dashboards',
+        timecodes: [3, 7],
     },
     {
         hotword: 'meaning',
-        timecodes: [100, 110],
+        timecodes: [184, 187],
     },
     {
         hotword: 'emotion',
-        timecodes: [100, 110],
+        timecodes: [64, 70],
     }
 ]
 var eyeVisibility = true;

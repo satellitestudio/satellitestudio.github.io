@@ -179,7 +179,7 @@ video {
     object-fit: cover;
     z-index: -1;
     margin: 0;
-    opacity: .2;
+    opacity: .15;
     transition: opacity 300ms linear;
 }
 
