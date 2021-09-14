@@ -9,7 +9,7 @@ var CHAPTERS = [
     },
     {
         hotword: 'maps',
-        timecodes: [37, 39.5],
+        timecodes: [38, 40],
     },
     {
         hotword: 'analysistools',
@@ -17,7 +17,7 @@ var CHAPTERS = [
     },
     {
         hotword: 'interactivearticles',
-        timecodes: [71, 77],
+        timecodes: [62, 66],
     },
     {
         hotword: 'fishing',
@@ -29,7 +29,7 @@ var CHAPTERS = [
     },
     {
         hotword: 'climate',
-        timecodes: [128, 133],
+        timecodes: [128, 131],
     },
     {
         hotword: 'literature',
@@ -45,7 +45,7 @@ var CHAPTERS = [
     },
     {
         hotword: 'tiny',
-        timecodes: [178, 180],
+        timecodes: [179, 181],
     },
     {
         hotword: 'giganticdb',
@@ -65,8 +65,52 @@ var CHAPTERS = [
     },
     {
         hotword: 'emotion',
-        timecodes: [64, 70],
-    }
+        timecodes: [66, 69],
+    },
+    {
+        hotword: 'google',
+        timecodes: [138, 164],
+    },
+    {
+        hotword: 'enveritas',
+        timecodes: [42, 60],
+    },
+    {
+        hotword: 'map3',
+        timecodes: [83, 120],
+    },
+    {
+        hotword: 'slavery',
+        timecodes: [62, 80],
+    },
+    {
+        hotword: 'causanatura',
+        timecodes: [120, 125],
+    },
+    {
+        hotword: 'cvp',
+        timecodes: [3, 31],
+    },
+    {
+        hotword: 'renfe',
+        timecodes: [33, 40],
+    },
+    {
+        hotword: 'cervest',
+        timecodes: [126, 137],
+    },
+    {
+        hotword: 'drowning',
+        timecodes: [165, 177],
+    },
+    {
+        hotword: 'emoji',
+        timecodes: [178, 191],
+    },
+    {
+        hotword: 'haiku',
+        timecodes: [193, 207],
+    },
 ]
 var eyeVisibility = true;
 var manifesto = document.getElementsByClassName('manifesto')[0]
@@ -78,6 +122,7 @@ var menuBtn = document.getElementById('menuBtn')
 var menuContainer = document.getElementById('menuContainer')
 var manifestoBtn = document.getElementById('manifestoBtn')
 var reelBtn = document.getElementById('reelBtn')
+var reelLink = document.getElementById('reelLink')
 
 function positionEyeHint(e) {
     var firstHotwordPosition = document.getElementById('eyeSpan').getBoundingClientRect();
@@ -102,7 +147,8 @@ for (var i = 0; i < hotwords.length; i++) {
     }
 }
 
-var functionDelay = null;
+var showCaptureTimeout = null;
+var hideCaptureTimeout = null;
 var currentWord = null;
 var currentWordId = null;
 
@@ -122,7 +168,8 @@ function doShowCapture(disableManifesto = false) {
 }
 
 function showCapture(e) {
-    functionDelay = setTimeout(function () {
+    clearTimeout(hideCaptureTimeout);
+    showCaptureTimeout = setTimeout(function () {
         currentWord = e.target;
         currentWordId = currentWord.dataset.capture
         var timecode = getChapterByHotword(currentWordId).timecodes[0]
@@ -133,7 +180,7 @@ function showCapture(e) {
             eyeVisibility = false;
         }
 
-        functionDelay = null;
+        showCaptureTimeout = null;
         window.addEventListener('click', hideCapture);
     }, 200);
 }
@@ -148,11 +195,12 @@ function doHideCapture() {
 }
 
 function hideCapture() {
-    if (functionDelay !== null) {
-        clearTimeout(functionDelay);
-        functionDelay = null;
+    clearTimeout(hideCaptureTimeout);
+    if (showCaptureTimeout !== null) {
+        clearTimeout(showCaptureTimeout);
+        showCaptureTimeout = null;
     } else {
-        setTimeout(function () {
+        hideCaptureTimeout = setTimeout(function () {
             if (currentWord) {
                 currentWord.classList.add('visited');
                 currentWord = null;
@@ -166,18 +214,26 @@ function hideCapture() {
     }
 }
 
-manifestoBtn.addEventListener('click', function() {
+function showManifesto() {
     doHideCapture(true)
     video.controls = false
     video.muted = true
-})
+    video.classList.remove('reel')
+}
 
-reelBtn.addEventListener('click', function() {
+function showReel() {
     doShowCapture(true)
     video.currentTime = 0
     video.controls = true
     video.muted = false
-})
+    video.classList.add('reel')
+    return false
+}
+
+manifestoBtn.addEventListener('click', showManifesto)
+logo.addEventListener('click', showManifesto)
+reelBtn.addEventListener('click', showReel)
+reelLink.addEventListener('click', showReel)
 
 menuBtn.addEventListener('click', function() {
     menuContainer.classList.toggle('hidden')

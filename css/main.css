@@ -31,8 +31,13 @@ button:focus {
 }
 
 a {
-    text-decoration: none;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--white);
     color: var(--white)
+}
+
+a[target="_blank"] {
+    text-decoration: none;
 }
 
 button {
@@ -62,6 +67,7 @@ body, button {
     position: fixed;
     margin: 20px 0 0 0;
     z-index: 2;
+    cursor: pointer;
 }
 
 nav {
@@ -120,8 +126,12 @@ nav a, nav button {
 }
 
 .manifesto.hidden {
-    transition: color 300ms ease-out;
+    transition: opacity 300ms ease-out;
     color: transparent;
+}
+
+.manifesto.hidden img, .manifesto.hidden a  {
+    opacity:0
 }
 
 .manifesto.hidden [data-capture] {
@@ -167,7 +177,7 @@ nav a, nav button {
     background-image: linear-gradient(to right, var(--grey) 100%, transparent 100%);
     background-repeat: repeat-x;
     background-size: 10px 1.5em;
-    cursor: pointer;
+    cursor: ne-resize;
 }
 
 video {
@@ -183,17 +193,14 @@ video {
     transition: opacity 300ms linear;
 }
 
+video.reel {
+    object-fit: contain;
+}
+
 .shown {
     opacity: 1;
 }
 
-.--emojiglobe {
-    object-fit: contain;
-}
-
-.--renfe, .--ianimal, .--clubmed {
-    object-fit: cover;
-}
 
 .visited, nav button:hover, nav a:hover {
     background: url('../img/visitedbg.png');
@@ -259,11 +266,11 @@ video {
     }
 }
 
-.signature {
+.signature, .clients {
     margin-top: 90px;
     font-size: 22px;
     line-height: 1.3em;
-    color: var(--lightgrey);
+    /* color: var(--lightgrey); */
 }
 
 .signature img {
